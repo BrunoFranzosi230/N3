@@ -18,4 +18,4 @@ try{
 }
 
 server.use(proprietarioRota)
-server,listen(5000, () => console.log("Servidor executando em http://localhost:5000 "))
+server.listen(5000, () => console.log("Servidor executando em http://localhost:5000 "))

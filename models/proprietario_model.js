@@ -4,13 +4,11 @@ import db from "../config/database.js";
 
 const Proprietario = db.define('proprietario', {
     id: {
-        type:Sequelize.INTIGER,
-        autoIncrement: true,
+        type:Sequelize.INTEGER,
         primaryKey: true
     },
     cpf: {
        type: Sequelize.STRING(11),
-       unique: true,
     },
     nome: {
         type: Sequelize.STRING(100)
