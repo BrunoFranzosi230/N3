@@ -23,4 +23,4 @@ const Proprietario = db.define('proprietario', {
     timestamps: false
 });
 
-export default Proprietario
+export default Proprietario;
