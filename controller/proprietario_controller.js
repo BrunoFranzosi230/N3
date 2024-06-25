@@ -1,6 +1,6 @@
 import Proprietario from "../models/proprietario_model.js";
 
-export const getProprietarios = async (req, res) => {
+export const getProprietario = async (req, res) => {
     try {
         const proprietarios = await Proprietario.findAll();
         res.json(proprietarios);

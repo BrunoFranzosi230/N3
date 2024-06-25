@@ -8,16 +8,16 @@ const Usuario = db. define('usuario', {
         autoIncrement: true
     },
     nome: {
-        type: Sequelize.toString(100),
+        type: Sequelize.STRING(100),
         allowNull: false
     },
     email: {
-        type: Sequelize.toString(100),
+        type: Sequelize.STRING(100),
         allowNull: false,
         unique: true
     },
     senha: {
-        type: Sequelize.toString(100),
+        type: Sequelize.STRING(100),
         allowNull: false
     }
 }, {
