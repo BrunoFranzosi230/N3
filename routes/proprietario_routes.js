@@ -1,8 +1,11 @@
 import express from "express";
-import { getProprietario } from "../controller/proprietario_controller.js";
+import { getProprietario, createProprietario, updateProprietario, deleteProprietario } from "../controller/proprietario_controller.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/proprietario', getProprietario)
+router.get('/proprietario', getProprietario);
+router.post('/proprietario', createProprietario);
+router.put('/proprietario/:id', updateProprietario);
+router.delete('/proprietario/:id', deleteProprietario);
 
-export default router
+export default router;

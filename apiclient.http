@@ -1,0 +1,44 @@
+###Criar Usuário
+POST http://localhost:5000/api/usuario/createUsuario
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "senha": "senha123"
+}
+
+### Login
+POST http://localhost:5000/api/usuario/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "senha": "senha123"
+}
+
+### Criar Proprietário
+POST http://localhost:5000/api/proprietario
+Content-Type: application/json
+
+{
+  "cpf": "12345678901",
+  "nome": "João Silva",
+  "telefone": "11987654321"
+}
+
+### Criar Veículo
+POST http://localhost:5000/api/veiculo
+Content-Type: application/json
+
+{
+  "placa": "ABC-1234",
+  "modelo": "Carro Modelo",
+  "preco": 75000,
+  "proprietario_id": 1
+}
+
+### Obter Veículos por Proprietário
+GET http://localhost:5000/api/veiculo/proprietario/1
+
+### Obter Veículos por Tipo
+GET http://localhost:5000/api/veiculo/tipo/Luxo
