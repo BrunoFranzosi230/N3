@@ -1,9 +1,12 @@
+# @name tokenacc
+
 ###Criar Usuário
 POST http://localhost:5000/api/usuario/createUsuario HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "user@example.com",
+  "nome": "Joana doe",
+  "email": "queijo@example.com",
   "senha": "senha123"
 }
 
@@ -16,26 +19,74 @@ Content-Type: application/json
   "senha": "senha123"
 }
 
+### Logout
+POST http://localhost:5000/api/usuario/logout HTTP/1.1
+Content-Type: application/json
+
+
 ### Criar Proprietário
 POST http://localhost:5000/api/proprietario HTTP/1.1
 Content-Type: application/json
 
 {
-  "cpf": "12345678901",
-  "nome": "João Silva",
-  "telefone": "11987654321"
+  
+  "cpf": "7894561233",
+  "nome": "Joana",
+  "telefone": "47999999999"
 }
+
+### Get Proprietário
+
+GET http://localhost:5000/api/proprietario HTTP/1.1
+Content-Type: application/json
+
+### Update Proprietario
+PUT http://localhost:5000/api/proprietario/6 HTTP/1.1
+Content-Type: application/json
+
+{
+  "cpf": "147896325",
+  "nome": "jorginho melo",
+  "telefone": "7899199199"
+}
+
+### Delete Proprietario
+DELETE http://localhost:5000/api/proprietario/6 HTTP/1.1
+Content-Type: application/json
+
 
 ### Criar Veículo
 POST http://localhost:5000/api/veiculo HTTP/1.1
 Content-Type: application/json
 
 {
+  "id": 1,
   "placa": "ABC-1234",
   "modelo": "Carro Modelo",
   "preco": 75000,
   "proprietario_id": 1
+
 }
+
+### Get Veiculo
+GET http://localhost:5000/api/veiculo HTTP/1.1
+Content-Type: application/json
+
+
+### Update Veiculo
+PUT http://localhost:5000/api/veiculo/6 HTTP/1.1
+Content-Type: application/json
+
+{
+  "placa": "DEF-5678",
+  "modelo": "Model Car",
+  "preco": 80000
+}
+
+### Delete Veiculo
+DELETE http://localhost:5000/api/veiculo/6 HTTP/1.1
+Content-Type: application/json
+
 
 ### Obter Veículos por Proprietário
 GET http://localhost:5000/api/veiculo/proprietario/1

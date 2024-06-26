@@ -10,9 +10,9 @@ export const getProprietario = async (req, res) => {
 };
 
 export const createProprietario = async (req, res) => {
-    const { cpf, nome, telefone } = req.body;
+    const { id, cpf, nome, telefone } = req.body;
     try {
-        const proprietario = await Proprietario.create({ cpf, nome, telefone });
+        const proprietario = await Proprietario.create({ id, cpf, nome, telefone });
         res.json(proprietario);
     } catch (error) {
         res.status(500).json({ error: "Erro ao criar proprietário" });
@@ -39,4 +39,3 @@ export const deleteProprietario = async (req, res) => {
         res.status(500).json({ error: "Erro ao deletar proprietário" });
     }
 };
-

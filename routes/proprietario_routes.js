@@ -3,9 +3,9 @@ import { getProprietario, createProprietario, updateProprietario, deletePropriet
 
 const router = express.Router();
 
-router.get('/proprietario', getProprietario);
-router.post('/proprietario', createProprietario);
-router.put('/proprietario/:id', updateProprietario);
-router.delete('/proprietario/:id', deleteProprietario);
+router.get('/', getProprietario);
+router.post('/', createProprietario);
+router.put('/:id', updateProprietario);
+router.delete('/:id', deleteProprietario);
 
 export default router;

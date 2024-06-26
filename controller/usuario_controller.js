@@ -5,11 +5,18 @@ import dotenv from "dotenv-safe";
 dotenv.config();
 
 export const createUsuario = async (req, res) => {
-    const { email, senha } = req.body;
+    const { nome, email, senha } = req.body;
+    
+    // Adicionando logs para depuração
+    console.log("Nome:", nome);
+    console.log("Email:", email);
+    console.log("Senha:", senha);
+
     try {
-        const usuario = await Usuario.create({ email, senha });
+        const usuario = await Usuario.create({ nome, email, senha });
         res.json(usuario);
     } catch (error) {
+        console.error("Erro ao criar usuário:", error);
         res.status(500).json({ error: "Erro ao criar usuário" });
     }
 };
@@ -17,19 +24,18 @@ export const createUsuario = async (req, res) => {
 export const login = async (req, res) => {
     const { email, senha } = req.body;
     try {
-        const usuario = await Usuario.findOne({ where: { email } });
-        if (!usuario) {
-            return res.status(404).json({ message: "Usuário não encontrado" });
+        const usuario = await Usuario.findOne({ where: { email, senha } });
+        if (usuario) {
+            const token = jwt.sign({ id: usuario.id }, process.env.SECRET, {
+                expiresIn: 300
+            });
+            res.json({ auth: true, token: token });
+        } else {
+            res.status(401).json({ message: "Login inválido!" });
         }
-        if (senha !== usuario.senha) {
-            return res.status(401).json({ message: "Senha inválida" });
-        }
-        const token = jwt.sign({ id: usuario.id }, process.env.SECRET, {
-            expiresIn: 300
-        });
-        res.json({ auth: true, token });
     } catch (error) {
-        res.status(500).json({ message: "Erro ao fazer login" });
+        console.error("Erro ao fazer login:", error);
+        res.status(500).json({ error: "Erro ao fazer login" });
     }
 };
 
@@ -39,8 +45,8 @@ export const logout = (req, res) => {
 
 export const verifyJWT = (req, res, next) => {
     const token = req.headers['x-access-token'];
-    if (!token) return res.status(401).json({ auth: false, message: "não há token" });
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    if (!token) return res.status(401).json({ auth: false, message: "Não há token" });
+    jwt.verify(token, process.env.SECRET, function(err, decoded) {
         if (err) return res.status(500).json({ auth: false, message: "Erro com a autenticação" });
         req.userId = decoded.id;
         next();

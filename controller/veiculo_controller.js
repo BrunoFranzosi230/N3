@@ -13,8 +13,17 @@ const associarTipoVeiculo = async (preco) => {
 
 export const createVeiculo = async (req, res) => {
     const { placa, modelo, preco, proprietario_id } = req.body;
+
+    // Adicionando logs para depuração
+    console.log("Placa:", placa);
+    console.log("Modelo:", modelo);
+    console.log("Preço:", preco);
+    console.log("Proprietário ID:", proprietario_id);
+
     try {
         const tipo = await associarTipoVeiculo(preco);
+        console.log("Tipo de veículo associado:", tipo);
+
         const veiculo = await Veiculo.create({
             placa,
             modelo,
@@ -22,9 +31,21 @@ export const createVeiculo = async (req, res) => {
             proprietario_id,
             tipo_id: tipo.id
         });
+
         res.json(veiculo);
     } catch (error) {
+        console.error("Erro ao criar veículo:", error);
         res.status(500).json({ error: "Erro ao criar veículo" });
+    }
+};
+
+export const getVeiculos = async (req, res) => {
+    try {
+        const veiculos = await Veiculo.findAll();
+        res.json(veiculos);
+    } catch (error) {
+        console.error("Erro ao acessar a tabela de veículos:", error);
+        res.status(500).json({ error: "Erro ao acessar a tabela de veículos" });
     }
 };
 
