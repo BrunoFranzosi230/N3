@@ -19,13 +19,15 @@ Content-Type: application/json
   "senha": "senha123"
 }
 
+
+
 ### Logout
 POST http://localhost:5000/api/usuario/logout HTTP/1.1
 Content-Type: application/json
 
 ### Protected
 GET http://localhost:5000/api/usuario/protected HTTP/1.1
-x-access-token: 
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTcxOTM2NTIxNSwiZXhwIjoxNzE5MzY1NTE1fQ.4-cmLll1ES6EPvJrbNOIbQptPn9KNx_TQeJdQyaTs3o 
 
 ### Criar Proprietário
 POST http://localhost:5000/api/proprietario HTTP/1.1
